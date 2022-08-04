@@ -9,8 +9,8 @@ setuptools.setup(
     version="0.0.1",
     author="N.Wen",
     author_email="nwen@clemson.edu",
-    description="Serializing and deserializing documents (JSON) with scientific data types (numpy)",
-    long_description="Serializing and deserializing documents (JSON) with scientific data types (numpy)",
+    description="Serializing, deserializing and hashing documents (JSON) with scientific data types (numpy)",
+    long_description="Serializing, deserializing and hashing documents (JSON) with scientific data types (numpy)",
     long_description_content_type="text/markdown",
     url="https://github.com/nwen-cu/numdoc",
     classifiers=[

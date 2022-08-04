@@ -1,1 +1,1 @@
-from .numdoc import NumDoc
+from .numdoc import dumps, loads
