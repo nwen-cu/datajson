@@ -6,7 +6,7 @@ with open(os.path.join(os.path.dirname(__file__), "README.md")) as readme:
 
 setuptools.setup(
     name="numdoc",
-    version="0.0.1",
+    version="0.0.2",
     author="N.Wen",
     author_email="nwen@clemson.edu",
     description="Serializing, deserializing and hashing documents (JSON) with scientific data types (numpy)",
