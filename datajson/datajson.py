@@ -10,13 +10,9 @@ import json
 
 optional_modules = {}
 
-try: 
-    import xxhash
-    optional_modules['xxhash'] = True
-except ModuleNotFoundError:
-    import hashlib
-    os.environ['PYTHONHASHSEED'] = '0'
-    optional_modules['xxhash'] = False
+
+import xxhash
+
 
 try:
     import numpy as np
@@ -27,12 +23,11 @@ except ModuleNotFoundError:
 
 config = {
     'use_bson': False, 
-    'use_xxhash': optional_modules['xxhash'],
 }            
 
 
 def dump_json(obj, generate_hash=False):
-    doc = json.dumps(obj, cls=NumDocEncoder, sort_keys=True)
+    doc = json.dumps(obj, cls=Encoder, sort_keys=True)
     if generate_hash:
         h = hash_document(doc)
         return doc, h
@@ -41,20 +36,14 @@ def dump_json(obj, generate_hash=False):
 
 
 def load_json(s):
-    return json.loads(s, cls=NumDocDecoder)
+    return json.loads(s, cls=Decoder)
 
 
 def hash_document(doc):
-    if config['use_xxhash']:
-        return xxhash.xxh3_128_hexdigest(doc)
-    else:
-        import hashlib
-        h = hashlib.new('sha256')
-        h.update(doc.encode('utf-8'))
-        return h.hexdigest()
+    return xxhash.xxh3_128_hexdigest(doc)
       
     
-class NumDocEncoder(json.JSONEncoder):
+class Encoder(json.JSONEncoder):
     def default(self, obj):
         if optional_modules['numpy']:
             if isinstance(obj, np.ndarray):
@@ -66,7 +55,7 @@ class NumDocEncoder(json.JSONEncoder):
         return json.JSONEncoder.default(self, obj)
     
     
-class NumDocDecoder(json.JSONDecoder):
+class Decoder(json.JSONDecoder):
     def __init__(self, *args, **kwargs):
         json.JSONDecoder.__init__(self, object_hook=self.object_hook, *args, **kwargs)
         
