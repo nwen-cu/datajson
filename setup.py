@@ -6,7 +6,7 @@ with open(os.path.join(os.path.dirname(__file__), "README.md")) as readme:
 
 setuptools.setup(
     name="datajson",
-    version="0.0.3",
+    version="0.0.5",
     author="N.Wen",
     author_email="nwen@clemson.edu",
     description="Serializing, deserializing and hashing JSON documents with scientific data types (numpy)",
@@ -18,6 +18,6 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    python_requires='>=3.6',
+    python_requires='>=3.8',
     install_requires=['xxhash'],
 )
