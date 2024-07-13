@@ -13,7 +13,7 @@ setuptools.setup(
     long_description="Serializing, deserializing and hashing JSON documents with scientific data types (numpy)",
     long_description_content_type="text/markdown",
     url="https://github.com/nwen-cu/datajson",
-    packages=find_packages(),
+    packages=setuptools.find_packages(),
     classifiers=[
         'Programming Language :: Python :: 3',
         'License :: OSI Approved :: MIT License',
